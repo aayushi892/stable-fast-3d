@@ -1,0 +1,122 @@
+### **Updated Documentation with Python Version Challenges for PyTorch**
+
+```markdown
+# Setting Up stable-fast-3d Offline
+
+## Prerequisites
+- **Python**: Ensure Python 3.8 or higher is installed. (Check PyTorch compatibility with Python versions.)
+- **pip**: Version 20.0+.
+- **GPU**: A compatible GPU with CUDA support (optional, but recommended for faster inference).
+
+---
+
+## Steps
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/Stability-AI/stable-fast-3d.git
+   cd stable-fast-3d
+   ```
+
+2. **Create a Virtual Environment**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install Dependencies**
+   - Install project dependencies from `requirements.txt`:
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+4. **Handle PyTorch Installation**
+   - PyTorch compatibility often depends on Python version and CUDA availability.
+   - Visit the [PyTorch installation page](https://pytorch.org/get-started/locally/) for guidance.
+   - Example:
+     - For Python 3.8 and CUDA 11.7:
+       ```bash
+       pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
+       ```
+     - For CPU-only (no CUDA):
+       ```bash
+       pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+       ```
+
+5. **Download Pre-Trained Models**
+   - If pre-trained models are needed:
+     - Download them manually from the provided links or repository instructions.
+     - Save them in a local directory, such as `models/`.
+     - Update the configuration files (e.g., `config.yaml`) to use the local file paths.
+
+6. **Set Up Offline Mode**
+   - Modify settings to ensure the application runs without an internet connection.
+   - Update configurations to point to local resources.
+
+7. **Run the Project**
+   ```bash
+   python main.py
+   ```
+
+8. **Test Offline Functionality**
+   - Disconnect from the internet.
+   - Verify that the application operates fully offline.
+
+---
+
+## Challenges & Solutions
+
+### **1. Python Version Compatibility**
+- **Challenge**: PyTorch requires specific Python versions. For example, Python 3.12 is not yet fully supported in many PyTorch builds as of late 2024.
+- **Solution**:
+  - Ensure your Python version is compatible. PyTorch works well with Python 3.8–3.11.
+  - Downgrade Python if necessary:
+    ```bash
+    conda install python=3.10  # If using Conda
+    ```
+    Or:
+    ```bash
+    pyenv install 3.10.12
+    pyenv global 3.10.12
+    ```
+
+### **2. Dependency Installation**
+- **Challenge**: Errors while installing PyTorch or its dependencies.
+- **Solution**:
+  - Upgrade pip, setuptools, and wheel:
+    ```bash
+    pip install --upgrade pip setuptools wheel
+    ```
+  - Use the specific PyTorch installation command from their [official guide](https://pytorch.org/get-started/locally/).
+
+### **3. GPU and CUDA Setup**
+- **Challenge**: CUDA version mismatch or lack of GPU support.
+- **Solution**:
+  - Check your CUDA version:
+    ```bash
+    nvcc --version
+    ```
+  - Match your PyTorch installation to your CUDA version (e.g., CUDA 11.7).
+
+### **4. Missing Pre-Trained Models**
+- **Challenge**: Pre-trained models are not downloaded automatically.
+- **Solution**:
+  - Manually download the models as instructed in the repository.
+  - Place them in the `models/` directory and update file paths in the configuration.
+
+---
+
+## Example Command for Offline Mode
+To run offline:
+1. Disconnect from the internet.
+2. Execute:
+   ```bash
+   python main.py --offline
+   ```
+
+---
+
+This documentation outlines the setup process, challenges, and solutions to help you successfully run the `stable-fast-3d` project offline. If you encounter additional issues, check the [GitHub Issues page](https://github.com/Stability-AI/stable-fast-3d/issues) for community support.
+```
+
+This updated version includes details about handling Python version compatibility challenges, particularly for PyTorch, to help prevent and resolve issues during the setup process.
